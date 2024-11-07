@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contatos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: orangered;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flexbox;
+        }
+        input, textarea {
+            font-size: larger;
+            width: 400px;
+            height: 30px;
+        }
+        button {
+             width: 200px;
+             height: 50px;
+             font-size: larger;
+             background-color: rgb(224, 103, 59);
+             color: white;
+        }
+        
+    </style>
+    <script>
+        function valEmail(event) {
+            var email = document.getElementById('email').value;
+            var erroEmail = document.getElementById('erroEmail');
+
+            // Limpa mensagem de erro anterior
+            erroEmail.innerHTML = '';
+            erroEmail.style.color = 'red';
+
+            var regexEmail = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+            if (!regexEmail.test(email)) {
+                erroEmail.innerHTML = "Por favor, insira um email valido.(ex: exemplo@dominio.com).";
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Formulario de Contatos</h1>
+    <form method="post" onsubmit="return valEmail(event)">
+        <input type="text" id="nome" name="nome" placeholder="Nome" required>
+        <br><br>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <br><br>
+        <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
+        <br><br>
+        <button type="submit" name="Enviar">Enviar</button>
+        <br><br>
+
+        <!-- Div para mostrar a mensagem de erro -->
+        <div id="erroEmail"></div>
+    </form>
+</body>
+</html>
